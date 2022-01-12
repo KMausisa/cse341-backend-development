@@ -1,13 +1,11 @@
-// Import the http module
-const http = require('http');
+// This file contains routing logic
+
 // Import the file system (fs) module
 const fs = require('fs');
 
-// Create a server
-const server = http.createServer((req, res) => {
-    // Parse the URL
+// Connect app.js to this file
+const requestHandler = (req, res) => {
     const url = req.url;
-    // Parse the method
     const method = req.method;
     if (url === '/') {
         res.write('<html>');
@@ -45,7 +43,7 @@ const server = http.createServer((req, res) => {
     res.write('</html>');
     // Finish writing the response
     res.end();
-});
+}
 
-// listen for a request on port 3000
-server.listen(3000);
+// Export the file
+module.exports = requestHandler;
