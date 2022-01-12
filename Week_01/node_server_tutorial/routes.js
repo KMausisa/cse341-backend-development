@@ -35,6 +35,7 @@ const requestHandler = (req, res) => {
             }); // writeFileSync blocks code execution until the file is created
         });
     }
+    
     res.setHeader('Content-Type', 'text/html');
     // Write data to the response
     res.write('<html>');
