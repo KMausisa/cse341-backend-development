@@ -10,18 +10,23 @@ const rootDir = require('../util/path');
 // Create a router
 const router = express.Router();
 
+// Create an array that will hold the products
+const products = [];
+
 // This middleweare function will create a form for the admin to add a product
 router.get('/add-product', (req, res, next) => {
-    // Send the add-product html file
-    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+    // Send the add-product ejs file
+    res.render()
 });
 
 // This middleware function will run when the form is submitted
 // The post method will be run for incoming POST requests
 router.post('/add-product', (req, res, next) => {
-    console.log(req.body);
+    // Add product from request onto the products array
+    products.push({title: req.body.title});
     // redirect to '/' route
     res.redirect('/');
 });
 
-module.exports = router;
+exports.routes = router;
+exports.products = products;
