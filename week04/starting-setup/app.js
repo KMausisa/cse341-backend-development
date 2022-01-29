@@ -1,6 +1,7 @@
 const path = require("path");
 
 const express = require("express");
+const cors = require('cors');
 const bodyParser = require("body-parser");
 
 const mongoose = require("mongoose");
@@ -33,8 +34,6 @@ app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
-
-const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const corsOptions = {
     origin: "https://infinite-oasis-68618.herokuapp.com/",
