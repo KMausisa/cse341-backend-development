@@ -45,7 +45,7 @@ const options = {
     family: 4
 };
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kmausisa:Kentimes0013@cse341cluster-3dwlw.mongodb.net/test?retryWrites=true&w=majority";
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kmausisa:Kentimes0013@cluster0.zwoaq.mongodb.net/shop?retryWrites=true&w=majority";
                         
 
 mongoose
