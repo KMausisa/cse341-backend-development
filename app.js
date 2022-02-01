@@ -1,7 +1,7 @@
 const path = require("path");
 
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const errorController = require("./controllers/error");
@@ -35,31 +35,30 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 const corsOptions = {
-    origin: "https://infinite-oasis-68618.herokuapp.com/",
-    optionsSuccessStatus: 200
+  origin: "https://infinite-oasis-68618.herokuapp.com/",
+  optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
 const options = {
-    family: 4
+  family: 4,
 };
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kmausisa:Kentimes0013@cluster0.zwoaq.mongodb.net/shop?retryWrites=true&w=majority";
-                        
+const MONGODB_URL =
+  process.env.MONGODB_URL ||
+  "mongodb+srv://kmausisa:Kentimes0013@cluster0.zwoaq.mongodb.net/shop?retryWrites=true&w=majority";
 
 mongoose
-  .connect(
-    MONGODB_URL, options
-  )
+  .connect(MONGODB_URL, options)
   .then((result) => {
-    User.findOne().then(user => {
+    User.findOne().then((user) => {
       if (!user) {
         const user = new User({
           name: "Kendrick",
           email: "test@gmail.com",
           cart: {
-            items: []
-          }
+            items: [],
+          },
         });
         user.save();
       }
