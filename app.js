@@ -3,12 +3,11 @@ const path = require("path");
 const express = require("express");
 const cors = require('cors');
 const bodyParser = require("body-parser");
-
 const mongoose = require("mongoose");
-
 const errorController = require("./controllers/error");
-
 const User = require("./models/user");
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -65,7 +64,7 @@ mongoose
         user.save();
       }
     });
-    app.listen(3000);
+    app.listen(PORT);
   })
   .catch((err) => {
     console.log(err);
