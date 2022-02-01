@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+require('dotenv').config();
 const errorController = require("./controllers/error");
 const User = require("./models/user");
 
@@ -46,7 +47,7 @@ const options = {
 
 const MONGODB_URL =
   process.env.MONGODB_URL ||
-  "mongodb+srv://kmausisa:Kentimes0013@cluster0.zwoaq.mongodb.net/shop?retryWrites=true&w=majority";
+  `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.zwoaq.mongodb.net/shop?retryWrites=true&w=majority`;
 
 mongoose
   .connect(MONGODB_URL, options)
