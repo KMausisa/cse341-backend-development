@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-require('dotenv').config();
+require("dotenv").config();
 const errorController = require("./controllers/error");
 const User = require("./models/user");
 
@@ -45,9 +45,7 @@ const options = {
   family: 4,
 };
 
-const MONGODB_URL =
-  process.env.MONGODB_URL ||
-  `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.zwoaq.mongodb.net/shop?retryWrites=true&w=majority`;
+const MONGODB_URL = process.env.MONGODB_URL;
 
 mongoose
   .connect(MONGODB_URL, options)
