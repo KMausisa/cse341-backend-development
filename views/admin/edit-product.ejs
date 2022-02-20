@@ -40,6 +40,15 @@
                     value="<% if (editing || hasError) { %><%= product.price %><% } %>">
             </div>
             <div class="form-control">
+                <label for="stock">Items in Stock</label>
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'stock') ? 'invalid' : '' %>"
+                    type="number" 
+                    name="stock" 
+                    id="stock" 
+                    step="1" 
+                    value="<% if (editing || hasError) { %><%= product.stock %><% } %>">
+            <div class="form-control">
                 <label for="description">Description</label>
                 <textarea 
                     class="<%= validationErrors.find(e => e.param === 'description') ? 'invalid' : '' %>"

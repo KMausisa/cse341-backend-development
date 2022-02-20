@@ -19,6 +19,7 @@ exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
+  const stock = req.body.stock;
   const description = req.body.description;
   const errors = validationResult(req);
 
@@ -33,6 +34,7 @@ exports.postAddProduct = (req, res, next) => {
         title: title,
         imageUrl: imageUrl,
         price: price,
+        stock: stock,
         description: description
       },
       errorMessage: errors.array()[0].msg,
@@ -41,9 +43,9 @@ exports.postAddProduct = (req, res, next) => {
   }
 
   const product = new Product({
-    // _id: new mongoose.Types.ObjectId('5badf72403fd8b5be0366e81'),
     title: title,
     price: price,
+    stock: stock,
     description: description,
     imageUrl: imageUrl,
     userId: req.user
@@ -51,26 +53,10 @@ exports.postAddProduct = (req, res, next) => {
   product
     .save()
     .then(result => {
-      // console.log(result);
       console.log('Created Product');
       res.redirect('/admin/products');
     })
     .catch(err => {
-      // return res.status(500).render('admin/edit-product', {
-      //   pageTitle: 'Add Product',
-      //   path: '/admin/add-product',
-      //   editing: false,
-      //   hasError: true,
-      //   product: {
-      //     title: title,
-      //     imageUrl: imageUrl,
-      //     price: price,
-      //     description: description
-      //   },
-      //   errorMessage: 'Database operation failed, please try again.',
-      //   validationErrors: []
-      // });
-      // res.redirect('/500');
       const error = new Error(err);
       error.httpStatusCode = 500;
       return next(error);
@@ -109,6 +95,7 @@ exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
+  const updatedStock = req.body.stock;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
 
@@ -124,6 +111,7 @@ exports.postEditProduct = (req, res, next) => {
         title: updatedTitle,
         imageUrl: updatedImageUrl,
         price: updatedPrice,
+        stock: updatedStock,
         description: updatedDesc,
         _id: prodId
       },
@@ -139,6 +127,7 @@ exports.postEditProduct = (req, res, next) => {
       }
       product.title = updatedTitle;
       product.price = updatedPrice;
+      product.stock = updatedStock;
       product.description = updatedDesc;
       product.imageUrl = updatedImageUrl;
       return product.save().then(result => {
